@@ -18,4 +18,9 @@ public class FeignTestController {
     public String findFeignMethodB(){
         return "feignB:"+port;
     }
+
+    @RequestMapping("/findFeignMethodC")
+    public String findFeignMethodC(){
+        return "feignC:"+port;
+    }
 }
