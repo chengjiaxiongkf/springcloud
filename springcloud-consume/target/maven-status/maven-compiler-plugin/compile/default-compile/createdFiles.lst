@@ -1,4 +1,0 @@
-com\communication\resttemplate\RestTemplateController.class
-com\communication\feign\service\FeignService.class
-com\configuration\ConfigBeans.class
-com\ConsumeMain.class
