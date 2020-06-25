@@ -5,29 +5,24 @@ server:
 spring:
   application:
     name: springcloud-common
-    servicename: SL_COMMON
-  #redisConfig
-  redis:
-    host: 47.95.221.169
-    port: 6379
-    password: cjxadmin
-    timeout: 30000
-    jedis:
-      pool:
-        max-active: 8
-        max-wait: -1
-        max-idle: 500
-        min-idle: 0
-    lettuce:
-      shutdown-timeout: 0
-  #redisConfig
+ 
 #注册中心指向start    
 eureka:
   instance:
     instance-id: springcloud-common
     appname: ${spring.application.name}
-    hostname: localhost
+    hostname: 47.95.221.169
   client: 
     service-url: 
       defaultZone: http://admin_cjx:admin_cjx@${eureka.instance.hostname}:8888/eureka/
 #注册中心指向end
+
+#feign的配置，连接超时及读取超时配置
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: basic
+#feign的配置，连接超时及读取超时配置
