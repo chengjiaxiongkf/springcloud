@@ -1,13 +1,31 @@
 package com.https;
 
 import com.alibaba.fastjson.JSONObject;
-import com.google.gson.JsonObject;
 import com.util.HttpsClientUtils;
 import org.junit.Test;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class HttpsClientUtilsTest {
+    /**
+     * 请求https协议
+     */
+    @Test
+    public void getBaidu() throws IOException {
+        String url = "https://www.baidu.com";
+        byte[] bytes = HttpsClientUtils.doGet(url);
+        if(null==bytes){
+            return;
+        }
+        final String encodeType = "utf-8";
+        System.out.println(new String(bytes,encodeType));
+        FileOutputStream fos = new FileOutputStream("D:/bing.txt");
+        fos.write(bytes);
+        fos.close();
+        System.out.println("done!");
+        byte[] bytes1 = "hello world".getBytes();        //Verify original content
+        System.out.println( new String(bytes1,encodeType));
+    }
     /**
      * 请求https协议
      */

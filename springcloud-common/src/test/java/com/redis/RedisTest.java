@@ -35,7 +35,7 @@ public class RedisTest extends TmallApplicationTests {
             System.out.println(3);
         }
         try {
-            new RedisKey("QWEQWEQ123QQWEWWQW1W","QWEQWEQ123QQWEWWQW1W");
+            System.out.println(redisUtils.get(redisUtils.getRedisKey("REDISTEST","TESTA")));
         } catch (RuntimeException e) {
             System.out.println(4);
         }

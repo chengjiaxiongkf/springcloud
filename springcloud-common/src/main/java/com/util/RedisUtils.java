@@ -17,7 +17,17 @@ public class RedisUtils {
     @Autowired
     private RedisTemplate redisTemplate;
 
-    public String setRedisKey(RedisKey redisKey){
+    /**
+     * 设置redisKey值
+     */
+    public String getRedisKey(String functionName,String keyName){
+        return StaticConstantUtils.serviceName+":"+functionName+":"+keyName;
+    }
+
+    /**
+     * 设置redisKey值
+     */
+    private String setRedisKey(RedisKey redisKey){
         return redisKey.getServiceName()+":"+redisKey.getFunctionName()+":"+redisKey.getKeyName();
     }
 
