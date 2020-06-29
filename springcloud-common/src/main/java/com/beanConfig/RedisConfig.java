@@ -1,4 +1,4 @@
-package com.benConfig;
+package com.beanConfig;
 
 import java.lang.reflect.Method;
 import org.springframework.beans.factory.annotation.Value;

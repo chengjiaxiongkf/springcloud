@@ -1,4 +1,4 @@
-package com.redis.dto;
+package com.util;
 
 import com.util.StaticConstantUtils;
 import org.apache.commons.lang.StringUtils;
@@ -13,11 +13,9 @@ public class RedisKey {
     String keyName;
 
     /**
-     * 规范化redis命名
-     * @param functionName
-     * @param keyName
+     * redis命名规范化
      */
-    public RedisKey(String functionName,String keyName) throws RuntimeException{
+    public RedisKey(String functionName,String keyName){
         String serviceName = StaticConstantUtils.serviceName;
         if(StringUtils.isEmpty(serviceName)){
             throw new RuntimeException("请检查yml配置文件中是否配置serviceName.");

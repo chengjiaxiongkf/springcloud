@@ -23,5 +23,15 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <!--||||||||||||||||||||||||||||fastJson依赖包||||||||||||||||||||||||||||-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+        </dependency>
+        <!--||||||||||||||||||||||||||||集合工具类依赖包||||||||||||||||||||||||||||-->
+        <dependency>
+            <groupId>commons-collections</groupId>
+            <artifactId>commons-collections</artifactId>
+        </dependency>
     </dependencies>
 </project>

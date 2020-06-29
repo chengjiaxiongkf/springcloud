@@ -1,7 +1,7 @@
 package com.redis;
 
-import com.redis.dto.RedisKey;
-import com.redis.util.RedisUtils;
+import com.util.RedisKey;
+import com.util.RedisUtils;
 import org.junit.Test;
 import com.TmallApplicationTests;
 import org.springframework.beans.factory.annotation.Autowired;
