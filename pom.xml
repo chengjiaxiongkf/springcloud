@@ -12,11 +12,13 @@
 
 	<!--子模块-->
 	<modules>
-		<module>common</module>
-		<module>user</module>
+		<module>maven-module</module>
+		<module>maven-user</module>
 		<module>springcloud-eureka</module>
-		<module>login</module>
-        <module>springcloud-zuul</module><!--注册中心-->
+		<module>maven-login</module>
+        <module>springcloud-zuul</module>
+        <module>maven-redis</module>
+        <module>maven-datasource</module><!--注册中心-->
 	</modules>
 
 	<!--编码格式/jar/springboot/springcloud版本管理-->
@@ -31,10 +33,22 @@
 	<!--||||||||||||||||||||||||||||管理所有项目依赖包||||||||||||||||||||||||||||-->
 	<dependencyManagement>
 		<dependencies>
-			<!--common公共模块依赖包-->
+			<!--module公共模块依赖包-->
 			<dependency>
 				<groupId>com</groupId>
-				<artifactId>common</artifactId>
+				<artifactId>maven-module</artifactId>
+				<version>0.0.1-SNAPSHOT</version>
+			</dependency>
+			<!--redis公共模块依赖包-->
+			<dependency>
+				<groupId>com</groupId>
+				<artifactId>maven-redis</artifactId>
+				<version>0.0.1-SNAPSHOT</version>
+			</dependency>
+			<!--datasource公共模块依赖包-->
+			<dependency>
+				<groupId>com</groupId>
+				<artifactId>maven-datasource</artifactId>
 				<version>0.0.1-SNAPSHOT</version>
 			</dependency>
 			<!--Spring Boot 依赖-->

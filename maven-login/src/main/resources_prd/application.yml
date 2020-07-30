@@ -1,0 +1,8 @@
+server:
+  port: 8010
+spring:
+  profiles:
+    include: module,redis,datasource
+  application:
+    name: login
+    servicename: SL_LOGIN
