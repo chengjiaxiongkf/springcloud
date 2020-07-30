@@ -14,14 +14,14 @@ import org.springframework.web.client.RestTemplate;
 @Configuration
 public class RestConfig {
     /**
-     * rabbit负载均衡(@LoadBalanced默认轮训算法)
+     * ribbon负载均衡(@LoadBalanced默认轮训算法)
      * //通过RestTemplate来实现调用接口
      * 表示RestTemplate开启了负载均衡
      * @return
      */
     @Bean
     @LoadBalanced
-    public RestTemplate rabbitRestTemplate(){
+    public RestTemplate ribbonRestTemplate(){
         return  new RestTemplate();
     }
     //重新创建一个均衡策略，表示不使用默认的轮训,newRandomRule()为随机调用

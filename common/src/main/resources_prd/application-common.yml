@@ -24,7 +24,7 @@ spring:
       initialSize: 5
       minIdle: 5
       maxActive: 20
-      maxWait: 60000
+      maxWait: 600000
       timeBetweenEvictionRunsMillis: 60000
       minEvictableIdleTimeMillis: 300000
       validationQuery: SELECT 1 FROM DUAL
@@ -44,9 +44,10 @@ mybatis:
 #注册中心指向start
 eureka:
   instance:
-    instance-id: ${spring.application.name}
+    instance-id: ${spring.application.name}:${server.port}
     appname: ${spring.application.name}
     hostname: 47.95.221.169
+    port: 8888
   client:
     service-url:
-      defaultZone: http://admin_cjx:admin_cjx@${eureka.instance.hostname}:8888/eureka/
+      defaultZone: http://admin_cjx:admin_cjx@${eureka.instance.hostname}:${eureka.instance.port}/eureka/

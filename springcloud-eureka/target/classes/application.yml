@@ -9,7 +9,7 @@ security:
         password: admin_cjx   
 eureka:
   instance:
-    hostname: localhost
+    hostname: 127.0.0.1
   client:
     register-with-eureka: false
     fetch-registry: false

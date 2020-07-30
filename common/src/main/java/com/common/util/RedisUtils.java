@@ -1,6 +1,6 @@
 package com.common.util;
 
-import com.common.contants.CommonContants;
+import com.common.vo.RedisKeyVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import java.io.Serializable;
@@ -21,14 +21,14 @@ public class RedisUtils {
     /**
      * 设置redisKey值
      */
-    private String setRedisKey(RedisKey redisKey){
+    private String setRedisKey(RedisKeyVO redisKey){
         return redisKey.getServiceName()+":"+redisKey.getFunctionName()+":"+redisKey.getKeyName();
     }
 
     /**
      * 写入缓存
      */
-    public boolean set(final RedisKey redisKey, Object value) {
+    public boolean set(final RedisKeyVO redisKey, Object value) {
         try {
             String key = this.setRedisKey(redisKey);
             ValueOperations operations = redisTemplate.opsForValue();
@@ -42,7 +42,7 @@ public class RedisUtils {
     /**
      * 写入缓存设置时效时间
      */
-    public boolean set(final RedisKey redisKey, Object value, Long expireTime ,TimeUnit timeUnit) {
+    public boolean set(final RedisKeyVO redisKey, Object value, Long expireTime , TimeUnit timeUnit) {
         try {
             String key = this.setRedisKey(redisKey);
             ValueOperations operations = redisTemplate.opsForValue();
@@ -97,7 +97,7 @@ public class RedisUtils {
     /**
      * 哈希 添加
      */
-    public void hmSet(final RedisKey redisKey, Object hashKey, Object value){
+    public void hmSet(final RedisKeyVO redisKey, Object hashKey, Object value){
         String key = this.setRedisKey(redisKey);
         HashOperations<String, Object, Object> hash = redisTemplate.opsForHash();
         hash.put(key,hashKey,value);
@@ -112,7 +112,7 @@ public class RedisUtils {
     /**
      * list添加
      */
-    public void lPush(final RedisKey redisKey,Object v){
+    public void lPush(final RedisKeyVO redisKey, Object v){
         String k = this.setRedisKey(redisKey);
         ListOperations<String, Object> list = redisTemplate.opsForList();
         list.rightPush(k,v);
@@ -127,7 +127,7 @@ public class RedisUtils {
     /**
      * 集合添加
      */
-    public void add(final RedisKey redisKey,Object value){
+    public void add(final RedisKeyVO redisKey, Object value){
         String key = this.setRedisKey(redisKey);
         SetOperations<String, Object> set = redisTemplate.opsForSet();
         set.add(key,value);
@@ -135,7 +135,7 @@ public class RedisUtils {
     /**
      * 集合获取
      */
-    public Set<Object> setMembers(final RedisKey redisKey){
+    public Set<Object> setMembers(final RedisKeyVO redisKey){
         String key = this.setRedisKey(redisKey);
         SetOperations<String, Object> set = redisTemplate.opsForSet();
         return set.members(key);
@@ -143,7 +143,7 @@ public class RedisUtils {
     /**
      * 有序集合添加
      */
-    public void zAdd(final RedisKey redisKey,Object value,double scoure){
+    public void zAdd(final RedisKeyVO redisKey, Object value, double scoure){
         String key = this.setRedisKey(redisKey);
         ZSetOperations<String, Object> zset = redisTemplate.opsForZSet();
         zset.add(key,value,scoure);

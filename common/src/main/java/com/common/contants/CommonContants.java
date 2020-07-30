@@ -10,6 +10,7 @@ public class CommonContants {
     public static final String SUCCESS = "Y";//返回成功标识
     public static final String FAIL = "N";//返回失败标识
     public static String serviceName;//yml中配置的服务名
+    public static final String LOCATION_HTTP = "http://";//协议头
 
     /**
      * 获取服务名赋给静态变量serviceName

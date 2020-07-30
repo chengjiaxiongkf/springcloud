@@ -2,50 +2,58 @@ package com.user.controller;
 
 import com.common.contants.CommonContants;
 import com.common.util.RedisUtils;
-import com.common.vo.RequestVO;
 import com.common.pojo.user.UserInfo;
 import com.user.service.UserInfoService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
-@RequestMapping("userInfoController")
+@RequestMapping("userInfo")
 public class UserInfoController {
     @Autowired
     private UserInfoService userInfoService;
     @Autowired
-    @Qualifier("rabbitRestTemplate")
+    @Qualifier("ribbonRestTemplate")
     private RestTemplate restTemplate;
     @Autowired
     private RedisUtils redisUtils;
+    @Value("${server.port}")
+    private String port;
+
+    private final Logger log = Logger.getLogger(UserInfoController.class);
     /**
      * 获取用户信息
-     * @param req
-     * @param rep
      * @return
      */
     @RequestMapping(value="/getUserInfo",produces= MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public RequestVO getUserInfo(HttpServletRequest req, HttpServletResponse rep){
-        RequestVO requestResult = new RequestVO();
-        requestResult.setResultCode(CommonContants.SUCCESS);
-        requestResult.setData(userInfoService.getUserInfo(new UserInfo()));
-        requestResult.setResultMsg(redisUtils.get("SL_COMMON:REDISTEST:TESTA")+"");
-        return requestResult;
+    public UserInfo getUserInfo(UserInfo userInfo){
+        log.info("user:"+port+" to getUserInfo(),param:"+userInfo);
+        userInfo = userInfoService.getUserInfo(userInfo);
+        log.info("user:"+port+" to getUserInfo(),result:"+userInfo);
+        return userInfo;
     }
+
     /**
-     * 直接通过应用实例名访问其他应用的controller请求
+     * 负载均衡测试
      * @return
      */
-    @GetMapping("/getServiceByInstanceId")
-    public String getServiceC() {
-        return restTemplate.getForObject("http://springcloud-consume/consume/getServiceByInstanceId", String.class);//直接通过应用名字访问服务
+    @RequestMapping(value="/getUserPort",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public Map getUserPort(){
+        Map resultMap = new HashMap<>();
+        resultMap.put("redis",redisUtils.get("SL_COMMON:REDISTEST:TESTA"));
+        resultMap.put("servicenamer",CommonContants.serviceName);
+        resultMap.put("port",port);
+        log.info("redis:"+redisUtils.get("SL_COMMON:REDISTEST:TESTA"));
+        log.info("servicenamer:"+CommonContants.serviceName);
+        log.info("port:"+port);
+        return resultMap;
     }
 }
