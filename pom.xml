@@ -111,7 +111,7 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
-			<version>RELEASE</version>
+			<version>${spring-boot.version}</version>
 			<scope>test</scope>
 		</dependency>
 		<!--fastjson类库-->
@@ -184,7 +184,7 @@
 			<resource>
 				<!--根据profiles参数 导入测试或生产环境配置文件-->
 				<directory>src/main/${profiles.activation}</directory>
-				<targetPath>${profiles.activation}</targetPath>
+				<targetPath>./</targetPath>
 				<filtering>true</filtering>
 			</resource>
 		</resources>
