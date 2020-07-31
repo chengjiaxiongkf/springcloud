@@ -43,7 +43,7 @@ public class UserFallback implements ZuulFallbackProvider {
             }
             @Override
             public InputStream getBody() throws IOException {
-                return new ByteArrayInputStream("fallback".getBytes());
+                return new ByteArrayInputStream("zuul.fallback().服务异常,请稍后重试.".getBytes());
             }
             @Override
             public HttpHeaders getHeaders() {

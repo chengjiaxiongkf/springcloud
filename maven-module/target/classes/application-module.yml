@@ -1,12 +1,17 @@
 #spring应用名跟对外服务名
 spring:
   profiles: module
+#ribbon
+ribbon:
+  ReadTimeout: 8000 #读取时间
+  ConnectTimeout: 10000 #总连接时间
+  SocketTimeout: 8000 #建立socket时间
 #注册中心指向start
 eureka:
   instance:
     instance-id: ${spring.application.name}:${server.port}
     appname: ${spring.application.name}
-    hostname: 47.95.221.169
+    hostname: 127.0.0.1
     port: 8888
   client:
     service-url:
