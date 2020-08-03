@@ -3,12 +3,14 @@ package com.user.mapper;
 import com.common.vo.PageVO;
 import com.common.pojo.user.UserInfo;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
 
 /**
  * @Author chengjiaxiong
  * @Date 2020/7/28 14:05
  */
 @Mapper
+@Repository
 public interface UserInfoMapper {
     /**
      * 新增UserInfo

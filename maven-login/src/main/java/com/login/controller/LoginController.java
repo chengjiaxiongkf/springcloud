@@ -3,8 +3,7 @@ package com.login.controller;
 import com.common.contants.CommonContants;
 import com.common.pojo.user.UserInfo;
 import com.login.service.FeignUserInfo;
-import org.apache.catalina.User;
-import org.apache.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.MediaType;
@@ -21,6 +20,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("login")
+@Slf4j
 public class LoginController {
     @Autowired
     @Qualifier("ribbonRestTemplate")
@@ -28,7 +28,6 @@ public class LoginController {
     @Autowired
     private FeignUserInfo feiUserInfo;
 
-    private Logger log = Logger.getLogger(LoginController.class);
     /**
      * 以ribbon方式调用user请求
      * @param req
@@ -37,6 +36,7 @@ public class LoginController {
      */
     @RequestMapping(value = "/getUserInfoByRibbon",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public UserInfo getUserInfoByRibbon(HttpServletRequest req, HttpServletResponse rep){
+        log.info("以ribbon方式访问user的用户信息");
         return restTemplate.getForObject(CommonContants.LOCATION_HTTP+"user/userInfo/getUserInfo", UserInfo.class);
     }
 
@@ -48,6 +48,7 @@ public class LoginController {
      */
     @RequestMapping(value = "/getUserInfoByFeign",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public UserInfo getUserInfoByFeign(HttpServletRequest req, HttpServletResponse rep){
+        log.info("以feign方式访问user的用户信息");
         return feiUserInfo.getUserInfo(new UserInfo());
     }
 
@@ -59,6 +60,7 @@ public class LoginController {
      */
     @RequestMapping(value = "/getUserPort",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public Map getUserPort(HttpServletRequest req, HttpServletResponse rep){
+        log.info("以feign方式访问user的端口信息");
         return feiUserInfo.getUserPort();
     }
 }

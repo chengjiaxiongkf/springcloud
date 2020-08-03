@@ -29,6 +29,7 @@
 
 		<spring-boot.version>1.5.6.RELEASE</spring-boot.version>
 		<spring-cloud.version>Dalston.SR3</spring-cloud.version>
+		<logback.version>1.2.3</logback.version>
 	</properties>
 	<!--||||||||||||||||||||||||||||管理所有项目依赖包||||||||||||||||||||||||||||-->
 	<dependencyManagement>
@@ -138,6 +139,17 @@
 			<groupId>org.freemarker</groupId>
 			<artifactId>freemarker</artifactId>
 			<version>2.3.28</version>
+		</dependency>
+		<!--logback日志切割-->
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-core</artifactId>
+			<version>${logback.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>${logback.version}</version>
 		</dependency>
 	</dependencies>
 	<!--声明2个打包变量,clean compile package-->

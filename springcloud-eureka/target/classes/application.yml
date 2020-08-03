@@ -1,6 +1,12 @@
 server:
   port: 8888
-
+spring:
+  application:
+    name: eureka
+    servicename: SL_EUREKA
+logging:
+  level: info
+  config: classpath:logback.xml
 security:
   basic:
     enable: true

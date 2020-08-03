@@ -80,7 +80,7 @@ public class PreZuulFilter extends ZuulFilter {
             String loginUser = request.getParameter("loginUser");
             String loginPassword = request.getParameter("loginPassword");
             //未登录成功
-            if(!"admin".equals(loginUser) || !"123456".equals(loginPassword)){
+            if(!"13302481775".equals(loginUser) || !"123456".equals(loginPassword)){
                 log.info("PreZuulFilter.run() user/password fail");
                 requestContext.setSendZuulResponse(false);//终止请求
                 PrintWriter printWriter = null;
