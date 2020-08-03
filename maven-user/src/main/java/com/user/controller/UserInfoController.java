@@ -71,7 +71,7 @@ public class UserInfoController {
         message = "端口:"+port+"向activeMQ发送了一个消息:"+message;
         requestVO.setResultMsg(message);
         log.info("UserInfoController.sendUserPort: send one message");
-        jmsMessagingTemplate.convertAndSend("12321",message);
+        jmsMessagingTemplate.convertAndSend("UserPort",message);
         return requestVO;
     }
 }

@@ -1,0 +1,3 @@
+spring:
+  profiles:
+    include: dev,module-dev,redis-dev,datasource-dev,mq-dev

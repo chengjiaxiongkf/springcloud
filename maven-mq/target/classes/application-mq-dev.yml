@@ -1,0 +1,5 @@
+spring:
+  profiles: mq-dev
+  #activemq连接配置
+  activemq:
+    broker-url: tcp://47.95.221.169:61616
