@@ -1,27 +1,3 @@
-#配置Zuul端口
-server:
-  port: 8887
 spring:
   profiles:
-    include: module
-  application:
-    name: springcloud-zuul
-    servicename: SL_ZUUL
-# 配置网关反向代理，例如访问/ZL_USER/** 直接重定向到user服务,实现路由转发，隐藏服务的真实ip(服务都实在内网中)
-#zull根据服务名，去Eureka获取服务真实地址，并通过本地转发，而且默认开启Ribbon实现负载均衡
-#默认读取Eureka注册列表 默认30秒间隔
-zuul:
-  max:
-    host:
-      connections: 100 #网关最大连接数
-  host:
-    socket-timeout-millis: 6000 #http建立socket的时间
-    connect-timeout-millis: 6000 #http总连接时间
-  routes:
-    api-user: #用户服务网关配置
-      path: /ZL_USER/**   #访问只要是/api-member/ 开头的直接转发到member-service服务
-      #服务名
-      serviceId: user
-    api-login: #登录服务网关配置
-      path: /ZL_LOGIN/**
-      serviceId: login
+    active: ${env},module-${env}

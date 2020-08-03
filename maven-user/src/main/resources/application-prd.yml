@@ -1,0 +1,10 @@
+#应用实例
+server:
+  port: 8000
+#spring应用名跟对外服务名
+spring:
+  profiles:
+    include: prd
+  application:
+    name: user
+    servicename: SL_USER

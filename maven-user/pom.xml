@@ -28,6 +28,11 @@
             <groupId>com</groupId>
             <artifactId>maven-datasource</artifactId>
         </dependency>
+        <!-- 引用mq公共模块  -->
+        <dependency>
+            <groupId>com</groupId>
+            <artifactId>maven-mq</artifactId>
+        </dependency>
         <!-- 添加注册中心依赖的包文件  -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>

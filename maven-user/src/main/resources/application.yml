@@ -1,10 +1,3 @@
-#应用实例
-server:
-  port: 8000
-#spring应用名跟对外服务名
 spring:
   profiles:
-    include: module,redis,datasource
-  application:
-    name: user
-    servicename: SL_USER
+    active: ${env},module-${env},redis-${env},datasource-${env},mq-${env}

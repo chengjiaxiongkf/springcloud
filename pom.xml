@@ -18,7 +18,8 @@
 		<module>maven-login</module>
         <module>springcloud-zuul</module>
         <module>maven-redis</module>
-        <module>maven-datasource</module><!--注册中心-->
+        <module>maven-datasource</module>
+        <module>maven-mq</module><!--注册中心-->
 	</modules>
 
 	<!--编码格式/jar/springboot/springcloud版本管理-->
@@ -50,6 +51,12 @@
 			<dependency>
 				<groupId>com</groupId>
 				<artifactId>maven-datasource</artifactId>
+				<version>0.0.1-SNAPSHOT</version>
+			</dependency>
+			<!--mq公共模块依赖包-->
+			<dependency>
+				<groupId>com</groupId>
+				<artifactId>maven-mq</artifactId>
 				<version>0.0.1-SNAPSHOT</version>
 			</dependency>
 			<!--Spring Boot 依赖-->
@@ -154,11 +161,11 @@
 	</dependencies>
 	<!--声明2个打包变量,clean compile package-->
 	<profiles>
-		<!--本地环境-->
+		<!--测试环境-->
 		<profile>
-			<id>resources</id>
+			<id>dev</id>
 			<properties>
-				<profiles.activation>resources</profiles.activation>
+				<env>dev</env>
 			</properties>
 			<activation>
 				<activeByDefault>true</activeByDefault> <!--默认打包环境-->
@@ -166,36 +173,34 @@
 		</profile>
 		<!--服务器环境-->
 		<profile>
-			<id>resources_prd</id>
+			<id>prd</id>
 			<properties>
-				<profiles.activation>resources_prd</profiles.activation>
+				<env>prd</env>
 			</properties>
 		</profile>
 	</profiles>
-
 	<build>
 		<finalName>${project.artifactId}</finalName>	<!--项目名-->
 		<!--动态取配置文件-->
 		<resources>
 			<resource>
+				<!--读取java下的所有xml文件-->
 				<directory>src/main/java</directory>
 				<includes>
 					<include>**/*.xml</include>
 				</includes>
 			</resource>
 			<resource>
-				<!--resources下的所有配置文件-->
+				<!--读取resources下的所有配置文件-->
 				<directory>src/main/</directory>
-				<!--其中includes选定下列文件filetering=false不被过滤-->
+				<!--<filtering>true</filtering>可以定义true过滤false不过滤下列文件,默认false-->
 				<includes>
 					<include>*/resources/*.yml</include>
-					<include>*/resources_prd/*.yml</include>
 				</includes>
-				<filtering>false</filtering>
 			</resource>
 			<resource>
-				<!--根据profiles参数 导入测试或生产环境配置文件-->
-				<directory>src/main/${profiles.activation}</directory>
+				<!--把resources目录下的文件打包到根目录-->
+				<directory>src/main/resources</directory>
 				<targetPath>./</targetPath>
 				<filtering>true</filtering>
 			</resource>
