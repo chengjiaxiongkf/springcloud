@@ -1,4 +1,4 @@
-package com.login.service;
+package com.login.service.feign;
 
 import com.common.pojo.user.UserInfo;
 import org.springframework.cloud.netflix.feign.FeignClient;
@@ -10,7 +10,7 @@ import java.util.Map;
  * @Author chengjiaxiong
  * @Date 2020/7/30 2:27
  */
-@FeignClient("USER")
+@FeignClient("userservice")//注册到eureka,zl前缀说明提供给zuul的名称的application名
 public interface FeignUserInfo {
     @RequestMapping("/userInfo/getUserInfo")
     UserInfo getUserInfo(UserInfo userInfo);

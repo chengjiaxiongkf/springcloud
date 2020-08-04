@@ -5,5 +5,5 @@ server:
 spring:
   profiles: dev
   application:
-    name: user
+    name: userservice
     servicename: SL_USER

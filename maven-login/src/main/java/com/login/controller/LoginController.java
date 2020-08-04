@@ -3,7 +3,7 @@ package com.login.controller;
 import com.common.contants.CommonContants;
 import com.common.pojo.user.UserInfo;
 import com.common.vo.RequestVO;
-import com.login.service.FeignUserInfo;
+import com.login.service.feign.FeignUserInfo;
 import com.redis.util.RedisUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -69,7 +68,7 @@ public class LoginController {
         return feiUserInfo.getUserPort();
     }
 
-    @RequestMapping(value = "getRedisValueByKey",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @RequestMapping(value = "/getRedisValueByKey",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public RequestVO getRedisValueByKey(HttpServletRequest request){
         RequestVO requestVO = new RequestVO();
         requestVO.setResultCode(CommonContants.SUCCESS);

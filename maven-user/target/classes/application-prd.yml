@@ -3,8 +3,7 @@ server:
   port: 8000
 #spring应用名跟对外服务名
 spring:
-  profiles:
-    include: prd
+  profiles: prd
   application:
-    name: user
+    name: userservice
     servicename: SL_USER

@@ -14,13 +14,15 @@ zuul:
     host:
       connections: 100 #网关最大连接数
   host:
-    socket-timeout-millis: 6000 #http建立socket的时间
-    connect-timeout-millis: 6000 #http总连接时间
+    socket-timeout-millis: 10000 #http建立socket的时间
+    connect-timeout-millis: 10000 #http总连接时间
+  semaphore:
+    max-semaphores: 200
   routes:
     api-user: #用户服务网关配置
       path: /ZL_USER/**   #访问只要是/api-member/ 开头的直接转发到member-service服务
       #服务名
-      serviceId: user
+      serviceId: userservice
     api-login: #登录服务网关配置
       path: /ZL_LOGIN/**
-      serviceId: login
+      serviceId: loginservice

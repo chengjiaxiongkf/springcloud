@@ -25,8 +25,8 @@ public class RestConfig {
         return  new RestTemplate();
     }
     //重新创建一个均衡策略，表示不使用默认的轮训,newRandomRule()为随机调用
-    @Bean
-    public IRule getIReule(){ //通过获取一个IRule对象，
-        return  new RandomRule();  //达到的目的，用我们重新选择的随机，替代默认的轮训方式
-    }
+//    @Bean
+//    public IRule getIReule(){ //通过获取一个IRule对象，
+//        return  new RandomRule();  //达到的目的，用我们重新选择的随机，替代默认的轮训方式
+//    }
 }
