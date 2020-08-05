@@ -11,7 +11,7 @@ import org.springframework.jms.annotation.EnableJms;
  * @Date 2020/7/30 0:44
  */
 @SpringBootApplication //springboot项目启动
-@EnableEurekaClient //这是一个eureka的客户端
+@EnableEurekaClient //这是一个eureka的客户端123
 @EnableJms //启用消息队列
 public class UserMain {
     public static void main(String[] args) {
