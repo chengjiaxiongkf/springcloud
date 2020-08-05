@@ -167,9 +167,6 @@
 			<properties>
 				<env>dev</env>
 			</properties>
-			<activation>
-				<activeByDefault>true</activeByDefault> <!--默认打包环境-->
-			</activation>
 		</profile>
 		<!--服务器环境-->
 		<profile>
@@ -177,6 +174,9 @@
 			<properties>
 				<env>prd</env>
 			</properties>
+			<activation>
+				<activeByDefault>true</activeByDefault> <!--默认打包环境-->
+			</activation>
 		</profile>
 	</profiles>
 	<build>
