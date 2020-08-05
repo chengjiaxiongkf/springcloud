@@ -3,7 +3,7 @@ spring:
   profiles: redis-dev
   #redisConfig
   redis:
-    host: 47.95.221.169
+    host: 172.17.140.83
     port: 6379
     password: cjxwd86496048
     timeout: 30000
