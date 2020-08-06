@@ -1,0 +1,7 @@
+server:
+  port: 8020
+spring:
+  profiles: dev
+  application:
+    name: websocket
+    servicename: SL_WEBSOCKET

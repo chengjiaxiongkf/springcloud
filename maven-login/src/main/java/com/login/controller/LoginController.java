@@ -1,10 +1,10 @@
 package com.login.controller;
 
 import com.common.contants.CommonContants;
-import com.common.pojo.user.UserInfo;
-import com.common.vo.RequestVO;
+import com.common.pojo.user.UserInfoPojo;
+import com.common.vo.ResultVO;
 import com.login.service.feign.FeignUserInfo;
-import com.redis.util.RedisUtils;
+import com.redis.util.RedissonUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -30,7 +30,7 @@ public class LoginController {
     @Autowired
     private FeignUserInfo feiUserInfo;
     @Autowired
-    private RedisUtils redisUtils;
+    private RedissonUtils redisUtils;
 
     /**
      * 以ribbon方式调用user请求
@@ -39,9 +39,9 @@ public class LoginController {
      * @return
      */
     @RequestMapping(value = "/getUserInfoByRibbon",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public UserInfo getUserInfoByRibbon(HttpServletRequest req, HttpServletResponse rep){
+    public UserInfoPojo getUserInfoByRibbon(HttpServletRequest req, HttpServletResponse rep){
         log.info("以ribbon方式访问user的用户信息");
-        return restTemplate.getForObject(CommonContants.LOCATION_HTTP+"user/userInfo/getUserInfo", UserInfo.class);
+        return restTemplate.getForObject(CommonContants.LOCATION_HTTP+"userservice/userInfo/getUserInfo", UserInfoPojo.class);
     }
 
     /**
@@ -51,9 +51,9 @@ public class LoginController {
      * @return
      */
     @RequestMapping(value = "/getUserInfoByFeign",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public UserInfo getUserInfoByFeign(HttpServletRequest req, HttpServletResponse rep){
+    public UserInfoPojo getUserInfoByFeign(HttpServletRequest req, HttpServletResponse rep){
         log.info("以feign方式访问user的用户信息");
-        return feiUserInfo.getUserInfo(new UserInfo());
+        return feiUserInfo.getUserInfo(new UserInfoPojo());
     }
 
     /**
@@ -69,11 +69,11 @@ public class LoginController {
     }
 
     @RequestMapping(value = "/getRedisValueByKey",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public RequestVO getRedisValueByKey(HttpServletRequest request){
-        RequestVO requestVO = new RequestVO();
+    public ResultVO getRedisValueByKey(HttpServletRequest request){
+        ResultVO requestVO = new ResultVO();
         requestVO.setResultCode(CommonContants.SUCCESS);
         String key = request.getParameter("key");
-        requestVO.setResultMsg(String.valueOf(redisUtils.get(key)));
+        requestVO.setResultMsg("");
         return requestVO;
     }
 }

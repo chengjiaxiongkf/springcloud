@@ -3,13 +3,13 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.user.mapper.UserInfoMapper">
-    <insert id="insertUserInfo" parameterType="com.common.pojo.user.UserInfo">
+    <insert id="insertUserInfo" parameterType="com.common.pojo.user.UserInfoPojo">
             INSERT INTO user_info
         (user_name,id_no_type, id_No,sex,birthday,age,is_valid,create_user, update_user)
             VALUES
         (#{userName}, #{idNoType}, #{idNo}, #{sex}, #{birthday}, #{age}, #{isValid}, #{createUser},#{updateUser})
     </insert>
-    <update id="updateUserInfo" parameterType="com.common.pojo.user.UserInfo">
+    <update id="updateUserInfo" parameterType="com.common.pojo.user.UserInfoPojo">
         UPDATE user_info ui
         SET
         <if test="userName!=null and userName!=''">
@@ -17,11 +17,11 @@
         </if>
         WHERE ui.id = #{id}
     </update>
-    <delete id="deleteUserInfo" parameterType="com.common.pojo.user.UserInfo">
+    <delete id="deleteUserInfo" parameterType="com.common.pojo.user.UserInfoPojo">
             DELETE FROM user_info ui
              where ui.id = #{id}
     </delete>
-    <delete id="batchDeleteUserInfo" parameterType="com.common.pojo.user.UserInfo">
+    <delete id="batchDeleteUserInfo" parameterType="com.common.pojo.user.UserInfoPojo">
         <foreach collection="list" item="userInfo">
             DELETE FROM user_info ui
             where ui.id = #{userInfo.id}
@@ -84,7 +84,7 @@
             </if>
         </where>
     </sql>
-    <select id="getUserInfo" parameterType="com.common.pojo.user.UserInfo" resultType="com.common.pojo.user.UserInfo">
+    <select id="getUserInfo" parameterType="com.common.pojo.user.UserInfoPojo" resultType="com.common.pojo.user.UserInfoPojo">
         <include refid="user_info_column"/>
         <include refid="user_info_where"/>
     </select>

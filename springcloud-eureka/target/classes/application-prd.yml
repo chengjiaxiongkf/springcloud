@@ -16,7 +16,7 @@ security:
     password: admin_cjx
 eureka:
   instance:
-    hostname: 47.95.221.169
+    hostname: 172.17.140.83
   client:
     register-with-eureka: false
     fetch-registry: false

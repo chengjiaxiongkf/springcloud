@@ -1,0 +1,10 @@
+com\common\pojo\user\UserInfo.class
+com\common\util\HttpsClientUtils$DefaultTrustManager.class
+com\common\contants\CommonContants.class
+com\common\util\JsonUtils.class
+com\common\beanconfig\RestConfig.class
+com\common\util\HttpsClientUtils$1.class
+com\common\vo\PageVO.class
+com\common\vo\RedisKeyVO.class
+com\common\util\HttpsClientUtils.class
+com\common\vo\RequestVO.class

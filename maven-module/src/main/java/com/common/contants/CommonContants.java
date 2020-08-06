@@ -12,6 +12,8 @@ public class CommonContants {
     public static String serviceName;//yml中配置的服务名
     public static final String LOCATION_HTTP = "http://";//协议头
 
+    public static final String MSG_SERVICE_MAX = "服务器繁忙，请稍后再试";//服务器繁忙
+
     /**
      * 获取服务名赋给静态变量serviceName
      * @param serviceName

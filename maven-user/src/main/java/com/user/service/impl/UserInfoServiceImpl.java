@@ -1,6 +1,6 @@
 package com.user.service.impl;
 
-import com.common.pojo.user.UserInfo;
+import com.common.pojo.user.UserInfoPojo;
 import com.common.vo.PageVO;
 import com.user.mapper.UserInfoMapper;
 import com.user.service.UserInfoService;
@@ -16,27 +16,27 @@ public class UserInfoServiceImpl implements UserInfoService {
     private UserInfoMapper userInfoMapper;
 
     @Override
-    public int insertUserInfo(UserInfo userInfo) {
+    public int insertUserInfo(UserInfoPojo userInfo) {
         return 0;
     }
 
     @Override
-    public int updateUserInfo(UserInfo userInfo) {
+    public int updateUserInfo(UserInfoPojo userInfo) {
         return 0;
     }
 
     @Override
-    public int deleteUserInfo(UserInfo userInfo) {
+    public int deleteUserInfo(UserInfoPojo userInfo) {
         return 0;
     }
 
     @Override
-    public UserInfo getUserInfo(UserInfo userInfo) {
+    public UserInfoPojo getUserInfo(UserInfoPojo userInfo) {
         return userInfoMapper.getUserInfo(userInfo);
     }
 
     @Override
-    public PageVO<UserInfo> getUserInfoByPage(PageVO<UserInfo> pageUserInfo) {
+    public PageVO<UserInfoPojo> getUserInfoByPage(PageVO<UserInfoPojo> pageUserInfo) {
         return null;
     }
 }

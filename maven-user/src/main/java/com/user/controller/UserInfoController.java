@@ -1,14 +1,16 @@
 package com.user.controller;
 
 import com.common.contants.CommonContants;
-import com.common.pojo.user.UserInfo;
-import com.common.vo.RequestVO;
+import com.common.pojo.user.UserInfoPojo;
+import com.common.vo.ResultVO;
 import com.redis.util.RedisUtils;
+import com.redis.util.RedissonUtils;
 import com.user.service.UserInfoService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.MediaType;
 import org.springframework.jms.core.JmsMessagingTemplate;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,7 +30,6 @@ public class UserInfoController {
     private RestTemplate restTemplate;
     @Autowired
     private RedisUtils redisUtils;
-    @Autowired
     private JmsMessagingTemplate jmsMessagingTemplate;
     @Value("${server.port}")
     private String port;
@@ -39,7 +40,7 @@ public class UserInfoController {
      * @return
      */
     @RequestMapping(value="/getUserInfo",produces= MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public UserInfo getUserInfo(UserInfo userInfo){
+    public UserInfoPojo getUserInfo(UserInfoPojo userInfo){
         log.info("user:"+port+" to getUserInfo(),param:"+userInfo);
         userInfo = userInfoService.getUserInfo(userInfo);
         log.info("user:"+port+" to getUserInfo(),result:"+userInfo);
@@ -53,18 +54,18 @@ public class UserInfoController {
     @RequestMapping(value="/getUserPort",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public Map getUserPort(){
         Map resultMap = new HashMap<>();
-        resultMap.put("redis",redisUtils.get("SL_COMMON:REDISTEST:TESTA"));
+        resultMap.put("redis",redisUtils.get("test").toString());
         resultMap.put("servicenamer",CommonContants.serviceName);
         resultMap.put("port",port);
-        log.info("redis:"+redisUtils.get("SL_COMMON:REDISTEST:TESTA"));
+        log.info("redis:"+redisUtils.get("test").toString());
         log.info("servicenamer:"+CommonContants.serviceName);
         log.info("port:"+port);
         return resultMap;
     }
 
     @RequestMapping(value="/sendUserPort",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public RequestVO sendUserPort(HttpServletRequest request){
-        RequestVO requestVO = new RequestVO();
+    public ResultVO sendUserPort(HttpServletRequest request){
+        ResultVO requestVO = new ResultVO();
         requestVO.setResultCode("Y");
 
         String message = request.getParameter("message");

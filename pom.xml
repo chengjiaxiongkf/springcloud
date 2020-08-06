@@ -19,7 +19,8 @@
         <module>springcloud-zuul</module>
         <module>maven-redis</module>
         <module>maven-datasource</module>
-        <module>maven-mq</module><!--注册中心-->
+        <module>maven-mq</module>
+		<module>maven-websocket</module><!--注册中心-->
 	</modules>
 
 	<!--编码格式/jar/springboot/springcloud版本管理-->
@@ -81,11 +82,11 @@
 				<artifactId>spring-cloud-starter-openfeign</artifactId>
 				<version>2.2.3.RELEASE</version>
 			</dependency>
-			<!--redis 依赖包-->
+			<!-- redisson 依赖包-->
 			<dependency>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-starter-data-redis</artifactId>
-				<version>${spring-boot.version}</version>
+				<groupId>org.redisson</groupId>
+				<artifactId>redisson</artifactId>
+				<version>3.13.3</version>
 			</dependency>
 			<!--mysql-->
 			<dependency>
