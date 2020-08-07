@@ -1,5 +1,0 @@
-com\ZuulMain.class
-com\fallback\UserFallback$1.class
-com\filter\PreZuulFilter.class
-com\fallback\UserFallback.class
-com\filter\PreZuulFilter$1.class
