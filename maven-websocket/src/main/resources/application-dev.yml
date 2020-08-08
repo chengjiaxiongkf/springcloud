@@ -3,5 +3,5 @@ server:
 spring:
   profiles: dev
   application:
-    name: websocket
+    name: websocketservice
     servicename: SL_WEBSOCKET
