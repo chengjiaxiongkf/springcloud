@@ -2,7 +2,7 @@
 server:
   port: 8887
 spring:
-  profiles: dev
+  profiles: prd
   application:
     name: springcloud-zuul
     servicename: SL_ZUUL
