@@ -1,18 +1,21 @@
 package com.filter;
 
-import com.alibaba.fastjson.JSONObject;
+import com.common.contants.CommonContants;
+import com.common.contants.login.LoginContants;
+import com.common.util.CookieUtils;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
+import com.redis.contants.RedisContants;
+import com.redis.util.RedisUtils;
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @Author chengjiaxiong
@@ -22,6 +25,9 @@ import java.util.Map;
 public class PreZuulFilter extends ZuulFilter {
 
     private final Logger log = Logger.getLogger(PreZuulFilter.class);
+
+    @Autowired
+    private RedisUtils redisUtils;
 
     /**
      * 过滤器的类型。可选值有：
@@ -76,35 +82,35 @@ public class PreZuulFilter extends ZuulFilter {
             }
         }
         log.info("PreZuulFilter.run() needLogin:"+needLogin);
-        if(needLogin){//需要登录
-            String loginUser = request.getParameter("loginUser");
-            String loginPassword = request.getParameter("loginPassword");
-            //未登录成功
-            if(!"13302481775".equals(loginUser) || !"123456".equals(loginPassword)){
-                log.info("PreZuulFilter.run() user/password fail");
-                requestContext.setSendZuulResponse(false);//终止请求
-                PrintWriter printWriter = null;
-                response.setContentType("application/json; charset=utf-8");
-                try {
-                    printWriter = response.getWriter();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                Map map = new HashMap();
-                map.put("resultCode","N");
-                map.put("resultMsg","请输入正确的账号密码");
-                if(null==printWriter){
-                    return null;
-                }
-                printWriter.write(JSONObject.toJSON(map).toString());
-                printWriter.close();
-                try {
-                    response.flushBuffer();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
+        if(!needLogin){//不需要认证登录
+            return null;
+        }
+        String cookie = CookieUtils.getCookieValue(request, LoginContants.COOKIE_SSOCOOKIE);
+        if(!StringUtils.isEmpty(cookie) && checkToken(cookie)){//校验登陆token是否存在
+//            requestContext.setSendZuulResponse(false);//终止请求
+            //更新登录失效
+            return null;
+        }
+        //跳转到登陆页面
+        try {
+            response.sendRedirect(CommonContants.LOCATION_HTTP+request.getRemoteHost()+CommonContants.LOCATION_LOGIN_URL);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         return null;
+    }
+
+    /**
+     * redis缓存认证
+     * @param key
+     * @return
+     */
+    private boolean checkToken(String key){
+        if(null!=redisUtils.get(RedisContants.REDIS_LOGIN_TOKEN+key)){
+            //更新token登录失效
+            redisUtils.expire(RedisContants.REDIS_LOGIN_TOKEN+key,LoginContants.LOGIN_VALID_TIME);
+            return true;
+        }
+        return false;
     }
 }

@@ -1,0 +1,7 @@
+server:
+  port: 8010
+spring:
+  profiles: dev
+  application:
+    name: loginservice
+    servicename: SL_LOGIN

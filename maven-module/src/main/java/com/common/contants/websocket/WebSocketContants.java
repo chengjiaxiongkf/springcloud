@@ -5,10 +5,6 @@ package com.common.contants.websocket;
  * @Date 2020/8/6 19:06
  */
 public class WebSocketContants {
-    //客户服务连接集合redissonKey
-    public static final String CUSTOMER_SESSIONS  = "SL_CHARROOM:WEBSOCKET:CUSTOMER:SESSIONS";
-    public static final String CUSTOMER_AUTOREPLY_MENU = "SL_CHARROOM:WEBSOCKET:CUSTOMER:AUTOREPLY:MENU";
-    public static final String CUSTOMER_AUTOREPLY_CONTEXT = "SL_CHARROOM:WEBSOCKET:CUSTOMER:AUTOREPLY:CONTEXT";
     //-------------------customer返回前台提示--------------
     public static final String MSG_CUSTOMER_OPEN_REPEAT = "当前状态已连接,请不要重复连接.";
     public static final String MSG_CUSTOMER_OPEN_START = "正在连接...";

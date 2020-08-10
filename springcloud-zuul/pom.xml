@@ -17,6 +17,11 @@
             <groupId>com</groupId>
             <artifactId>maven-module</artifactId>
         </dependency>
+        <!--redis公共模块依赖包-->
+        <dependency>
+            <groupId>com</groupId>
+            <artifactId>maven-redis</artifactId>
+        </dependency>
         <!--zuul-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>

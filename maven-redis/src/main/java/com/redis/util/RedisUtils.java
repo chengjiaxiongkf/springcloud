@@ -18,6 +18,19 @@ public class RedisUtils {
     @Autowired
     private RedisTemplate redisTemplate;
 
+    /**
+     * 重复请求校验
+     * @param key
+     * @return
+     */
+    public boolean validRepeat(String key){
+        if(null!=this.get(key)){
+            return true;
+        }
+        return false;
+    }
+
+
     //- - - - - - - - - - - - - - - - - - - - -  公共方法 - - - - - - - - - - - - - - - - - - - -
 
     /**

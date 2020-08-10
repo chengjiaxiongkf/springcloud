@@ -2,6 +2,7 @@ package com.common.vo;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.Map;
 
 /**
@@ -9,7 +10,7 @@ import java.util.Map;
  * @Date 2020/7/28 15:23
  */
 @Data
-public class ResultVO {
+public class ResultVO implements Serializable {
     //返回标识
     private String resultCode;
     //返回信息

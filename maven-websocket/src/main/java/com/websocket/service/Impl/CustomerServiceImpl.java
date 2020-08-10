@@ -3,6 +3,7 @@ package com.websocket.service.Impl;
 import com.common.contants.websocket.WebSocketContants;
 import com.common.vo.websocket.CustomerVO;
 import com.common.vo.websocket.WebSocketVO;
+import com.redis.contants.RedisContants;
 import com.redis.util.RedissonUtils;
 import com.websocket.service.CustomerService;
 import com.websocket.common.WebSocketInterfaceParent;
@@ -20,8 +21,6 @@ import javax.websocket.Session;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
-
 /**
  * 在线客服
  * @Author chengjiaxiong
@@ -144,7 +143,7 @@ public class CustomerServiceImpl extends WebSocketInterfaceParent implements Cus
     @Override
     public RList<CustomerVO> getOnlineAll() {
         //获取已连接列表
-        RList<CustomerVO> list = redissonUtils.getRList(WebSocketContants.CUSTOMER_SESSIONS);
+        RList<CustomerVO> list = redissonUtils.getRList(RedisContants.CUSTOMER_SESSIONS);
         return list;
     }
 
@@ -160,7 +159,7 @@ public class CustomerServiceImpl extends WebSocketInterfaceParent implements Cus
 
     @Override
     public List<String> getAutoReplyMenu() {
-        return redissonUtils.getRList(WebSocketContants.CUSTOMER_AUTOREPLY_MENU);
+        return redissonUtils.getRList(RedisContants.CUSTOMER_AUTOREPLY_MENU);
     }
 
     @Override
@@ -171,7 +170,7 @@ public class CustomerServiceImpl extends WebSocketInterfaceParent implements Cus
                 return list.toString();
             }
         }
-        RMap<String,String> replyMap = redissonUtils.getRMap(WebSocketContants.CUSTOMER_AUTOREPLY_CONTEXT);
+        RMap<String,String> replyMap = redissonUtils.getRMap(RedisContants.CUSTOMER_AUTOREPLY_CONTEXT);
         String reply = MapUtils.getString(replyMap,title);
         if(StringUtils.isEmpty(reply)){
             reply = "不好意思，未能识别您的问题.";
