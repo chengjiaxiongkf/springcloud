@@ -1,7 +1,0 @@
-server:
-  port: 8020
-spring:
-  profiles: prd
-  application:
-    name: websocketservice
-    servicename: SL_WEBSOCKET

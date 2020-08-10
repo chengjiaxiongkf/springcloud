@@ -1,7 +1,0 @@
-server:
-  port: 8010
-spring:
-  profiles: prd
-  application:
-    name: loginservice
-    servicename: SL_LOGIN
