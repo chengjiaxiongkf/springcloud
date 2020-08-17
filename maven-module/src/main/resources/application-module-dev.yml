@@ -1,6 +1,8 @@
 #spring应用名跟对外服务名
 spring:
   profiles: module-dev
+  aop:
+    proxy-target-class: true #CGLIB字节码底层继承要代理类实现动态代理
 #ribbon
 ribbon:
   ReadTimeout: 8000 #读取时间

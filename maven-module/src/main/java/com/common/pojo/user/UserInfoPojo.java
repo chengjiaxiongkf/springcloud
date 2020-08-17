@@ -2,12 +2,14 @@ package com.common.pojo.user;
 
 import lombok.Data;
 
+import java.io.Serializable;
+
 /**
  * @Author chengjiaxiong
  * @Date 2020/7/28 14:05
  */
 @Data
-public class UserInfoPojo {
+public class UserInfoPojo implements Serializable {
     private Integer id;         //主鍵ID
     private String userName;    //用戶姓名
     private String idNoType;    //证件类型

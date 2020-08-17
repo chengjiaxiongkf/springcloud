@@ -1,0 +1,5 @@
+com\user\controller\UserInfoController.class
+com\user\mapper\UserInfoMapper.class
+com\user\service\UserInfoService.class
+com\UserMain.class
+com\user\service\impl\UserInfoServiceImpl.class

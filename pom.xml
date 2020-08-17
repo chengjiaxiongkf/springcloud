@@ -16,10 +16,10 @@
 		<module>maven-user</module>
 		<module>springcloud-eureka</module>
 		<module>maven-login</module>
-        <module>springcloud-zuul</module>
-        <module>maven-redis</module>
-        <module>maven-datasource</module>
-        <module>maven-mq</module>
+		<module>springcloud-zuul</module>
+		<module>maven-redis</module>
+		<module>maven-datasource</module>
+		<module>maven-mq</module>
 		<module>maven-websocket</module><!--注册中心-->
 	</modules>
 

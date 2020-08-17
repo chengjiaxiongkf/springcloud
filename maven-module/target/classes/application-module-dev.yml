@@ -1,0 +1,24 @@
+#spring应用名跟对外服务名
+spring:
+  profiles: module-dev
+  aop:
+    proxy-target-class: true #CGLIB字节码底层继承要代理类实现动态代理
+#ribbon
+ribbon:
+  ReadTimeout: 8000 #读取时间
+  ConnectTimeout: 10000 #总连接时间
+  SocketTimeout: 8000 #建立socket时间
+#logback
+logging:
+  level: info
+  config: classpath:logback.xml
+#注册中心指向start
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${server.port}
+    appname: ${spring.application.name}
+    hostname: 127.0.0.1
+    port: 8888
+  client:
+    service-url:
+      defaultZone: http://admin_cjx:admin_cjx@${eureka.instance.hostname}:${eureka.instance.port}/eureka/
