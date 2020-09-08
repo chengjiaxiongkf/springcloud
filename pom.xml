@@ -20,7 +20,7 @@
 		<module>maven-redis</module>
 		<module>maven-datasource</module>
 		<module>maven-mq</module>
-		<module>maven-websocket</module><!--注册中心-->
+		<module>maven-websocket</module>
 	</modules>
 
 	<!--编码格式/jar/springboot/springcloud版本管理-->

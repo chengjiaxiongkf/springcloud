@@ -1,0 +1,56 @@
+-- 省
+CREATE TABLE `province` (
+                            `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+                            `name` varchar(255) DEFAULT NULL,
+                            `code` varchar(255) DEFAULT NULL,
+                            `href` varchar(255) DEFAULT NULL,
+                            PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- 市
+CREATE TABLE `city` (
+                        `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+                        `name` varchar(255) DEFAULT NULL,
+                        `province_id` int(11) unsigned DEFAULT NULL,
+                        `code` varchar(255) DEFAULT NULL,
+                        `href` varchar(255) DEFAULT NULL,
+                        PRIMARY KEY (`id`),
+                        KEY `city_province_id_foreign` (`province_id`),
+                        CONSTRAINT `city_province_id_foreign` FOREIGN KEY (`province_id`) REFERENCES `province` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- 区
+CREATE TABLE `country` (
+                           `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+                           `name` varchar(255) DEFAULT NULL,
+                           `city_id` int(11) unsigned DEFAULT NULL,
+                           `code` varchar(255) DEFAULT NULL,
+                           `href` varchar(255) DEFAULT NULL,
+                           PRIMARY KEY (`id`),
+                           KEY `country_city_id_foreign` (`city_id`),
+                           CONSTRAINT `country_city_id_foreign` FOREIGN KEY (`city_id`) REFERENCES `city` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- 街道
+CREATE TABLE `street` (
+                          `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+                          `name` varchar(255) DEFAULT NULL,
+                          `country_id` int(11) unsigned DEFAULT NULL,
+                          `code` varchar(255) DEFAULT NULL,
+                          `href` varchar(255) DEFAULT NULL,
+                          PRIMARY KEY (`id`),
+                          KEY `street_country_id_foreign` (`country_id`),
+                          CONSTRAINT `street_country_id_foreign` FOREIGN KEY (`country_id`) REFERENCES `country` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- 社区
+CREATE TABLE `community` (
+                             `id` varchar(100) NOT NULL,
+                             `name` varchar(255) DEFAULT NULL,
+                             `street_id` int(11) unsigned DEFAULT NULL,
+                             `code` varchar(255) DEFAULT NULL,
+                             `category` varchar(255) DEFAULT NULL COMMENT '城乡分类代码',
+                             PRIMARY KEY (`id`),
+                             KEY `community_street_id_foreign` (`street_id`),
+                             CONSTRAINT `community_street_id_foreign` FOREIGN KEY (`street_id`) REFERENCES `street` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
